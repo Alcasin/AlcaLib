@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Book</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <%- include("partials/navbar") %>
+
+    <div class="form-container">
+      <h1><%= book.title %></h1>
+
+      <form action="/book/<%= book.id %>?_method=PUT" method="POST">
+        <label>Rating</label>
+<div class="rating">
+  <% for(let i = 5; i >= 1; i--) { %>
+    <input type="radio" id="star<%= i %>" name="rating" value="<%= i %>" <%= book.rating == i ? "checked" : "" %>>
+    <label for="star<%= i %>">★</label>
+  <% } %>
+</div>
+
+
+        <label>Notes</label>
+        <textarea name="notes"><%= book.notes %></textarea>
+
+        <button type="submit">Update</button>
+      </form>
+    </div>
+  </body>
+</html>

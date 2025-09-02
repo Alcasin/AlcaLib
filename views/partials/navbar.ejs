@@ -1,0 +1,39 @@
+<nav class="navbar">
+  <div class="container">
+    <!-- Logo -->
+    <div class="logo">
+      <span>AlcaLib</span>
+    </div>
+
+    <!-- Orta kısım: sort + search + genre -->
+    <% if (showSort) { %>
+    <form method="GET" action="/" class="nav-search">
+  <select name="sort" onchange="this.form.submit()">
+    <option value="newest" <%= sort === 'newest' ? 'selected' : '' %>>Newest first</option>
+    <option value="oldest" <%= sort === 'oldest' ? 'selected' : '' %>>Oldest first</option>
+    <option value="alphabetical" <%= sort === 'alphabetical' ? 'selected' : '' %>>Alphabetical</option>
+    <option value="rating" <%= sort === 'rating' ? 'selected' : '' %>>Highest Rating</option>
+  </select>
+
+  <select name="genre" onchange="this.form.submit()">
+    <option value="">All Genres</option>
+    <% genres.forEach(g => { 
+         g.split(',').forEach(one => { %>
+           <option value="<%= one.trim() %>" <%= genre === one.trim() ? "selected" : "" %>><%= one.trim() %></option>
+    <%   })
+       }) %>
+  </select>
+
+  <input type="text" name="search" value="<%= search %>" placeholder="Search by title...">
+  <button type="submit" class="search-btn">Search</button>
+</form>
+
+    <% } %>
+
+    <!-- Sağ linkler -->
+    <ul class="nav-links">
+      <li><a href="/">Books</a></li>
+      <li><a href="/add">Add Book</a></li>
+    </ul>
+  </div>
+</nav>
